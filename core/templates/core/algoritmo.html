@@ -30,7 +30,8 @@
                             </div>
                             <div class="form-group">
                                 <label>Query</label>
-                                <input name="query" value="{% if datos_Form %}{{datos_Form.queryBD}}{% endif %}" class="form-control" >
+                                <textarea  name="query" rows="4" class="form-control" >{% if datos_Form %}{{datos_Form.queryBD}}{% endif %}</textarea>
+                                
                             </div>
                             <div class="form-group">
                                 <label>Número de Folds</label>
@@ -72,26 +73,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-bar-chart-o fa-fw"></i> Resultados
-                        <div class="pull-right">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle"
-                                        data-toggle="dropdown">
-                                    Actions
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu pull-right" role="menu">
-                                    <li><a href="#">Action</a>
-                                    </li>
-                                    <li><a href="#">Another action</a>
-                                    </li>
-                                    <li><a href="#">Something else here</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                     <!-- /.panel-heading -->
                   
@@ -121,12 +102,14 @@
                                             
                                         </tbody>
                                     </table>
-
+                                    <hr>
                                     <div class="table-responsive">
+                                        <h3>Información de clusters</h3>
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
+                                               
                                                 <tr>
-                                                    <th>Nº Cluster</th>
+                                                    <th>Cluster</th>
                                                     <th>Nº de instancias</th>
                                                     <th>Porcentaje</th>
                                                 </tr>
@@ -139,8 +122,15 @@
                                                         <td>{{dato.percentage}}%</td>
                                                         
                                                     </tr>
-                                                {% endfor %}
-                                                                               
+                                                {% endfor %}  
+                                                    <tr>
+                                                        <td><b>Total: </b></td>
+                                                        <td>{{ datos.0|length  }}</td> 
+                                                        <td></td>
+                                                        
+                                                    </tr> 
+                                                    
+                                                                                                                       
                                             </tbody>
                                         </table>                                
                                     </div>
@@ -160,9 +150,9 @@
         </div>
         <!-- /.row -->
 
-        <div class="row">  
+        <!-- <div class="row">  
             <img src="data:image/png;base64, {{imagen}}" alt="Imagen de algoritmo" />       
-        </div>
+        </div> -->
         
     </div>
     <!-- /.container-fluid -->

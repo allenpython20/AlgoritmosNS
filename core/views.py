@@ -3,37 +3,24 @@ import requests
 import json
 # Create your views here.
 
-
-
-
-def home(request):
-	return render(request,"core/home.html")
-
-def about(request):
-	return render(request,"core/about.html")
-
-def contact(request):
-	return render(request,"core/contact.html")
-
 def algoritmo(request):
 	url = 'https://cloudxapi.herokuapp.com/cluster/EM';
 	datos = []
 	params = {}
 	if  request.POST.get('query'):
-		
+		body = request.POST
 		params = {
-				"queryBD": request.POST.get('query'),
-				"numFolds": request.POST.get('numFolds'),
-				"numKMeansRuns": request.POST.get('numKMeansRuns'),
+				"queryBD": body.get('query').strip(),
+				"numFolds": body.get('numFolds'),
+				"numKMeansRuns": body.get('numKMeansRuns'),
 				"maximumNumberOfClusters": request.POST.get('maximumNumberOfClusters'),
-				"numClusters": request.POST.get('numClusters'),
-				"maxIterations": request.POST.get('maxIterations')
+				"numClusters": body.get('numClusters'),
+				"maxIterations": body.get('maxIterations')
 			};
 
 		response = generate_request(url,params)
 		if response:
-			datos = response
-			datos = [datos['valsInstances'],datos['infoCluster']]
+			datos = [response['valsInstances'],response['infoCluster']]
 	
 
 	return render(request,"core/algoritmo.html",{'datos':datos,'datos_Form':params})

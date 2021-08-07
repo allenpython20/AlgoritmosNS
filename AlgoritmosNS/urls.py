@@ -19,8 +19,6 @@ from core import views
 
 urlpatterns = [
     path('',views.algoritmo,name="home"),
-    path('about/',views.about,name="about"),
-    path('contact/',views.contact,name="contact"),
     path('algoritmo/',views.algoritmo,name="algoritmo"),
     path('admin/', admin.site.urls),
 ]
