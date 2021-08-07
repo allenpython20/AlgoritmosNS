@@ -26,10 +26,6 @@
                                 <label>Algoritmo</label>
                                 <select class="form-control">
                                     <option>EM</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -71,6 +67,7 @@
    
             </div>
             <!-- /.col-lg-4 -->
+
             <div class="col-lg-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -106,24 +103,47 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Instancia</th>
-                                                <th>Time</th>
                                                 <th>Cluster</th>
+                                                <th>Categoría</th>
+                                                <th>Título</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for dato in datos %}
+                                            {% for dato in datos.0 %}
                                                 <tr>
                                                     <td>{{forloop.counter}}</td>
-                                                    <td>{{dato.vals.0}}</td>
-                                                    <td>{{dato.vals.1}}</td>
-                                                    <td>{{dato.vals.2}}</td>
+                                                    <td>{{dato.instancia.2}}</td>
+                                                    <td>{{dato.instancia.0}}</td>
+                                                    <td>{{dato.instancia.1}}</td>
+                                                    
                                                 </tr>
                                             {% endfor %}
                                             
                                         </tbody>
                                     </table>
-                                </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nº Cluster</th>
+                                                    <th>Nº de instancias</th>
+                                                    <th>Porcentaje</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for dato in datos.1 %}
+                                                    <tr>
+                                                        <td>{{dato.id}}</td>
+                                                        <td>{{dato.numInstances}}</td>
+                                                        <td>{{dato.percentage}}%</td>
+                                                        
+                                                    </tr>
+                                                {% endfor %}
+                                                                               
+                                            </tbody>
+                                        </table>                                
+                                    </div>
                                 <!-- /.table-responsive -->
                             </div>
                             <!-- /.col-lg-4 (nested) -->

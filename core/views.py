@@ -31,9 +31,9 @@ def algoritmo(request):
 			};
 
 		response = generate_request(url,params)
-
 		if response:
 			datos = response
+			datos = [datos['valsInstances'],datos['infoCluster']]
 	
 
 	return render(request,"core/algoritmo.html",{'datos':datos,'datos_Form':params})
