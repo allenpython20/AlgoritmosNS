@@ -1,0 +1,33 @@
+    <!-- jQuery -->
+        {% load static %}
+        <script src="{% static 'core/js/jquery.min.js' %}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="{% static 'core/js/metisMenu.min.js' %}"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="{% static 'core/js/dataTables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'core/js/dataTables/dataTables.bootstrap.min.js' %}"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="{% static 'core/js/raphael.min.js' %}"></script>
+       <!--  <script src="{% static 'core/js/morris.min.js' %}"></script>
+        <script src="{% static 'core/js/morris-data.js' %}"></script> -->
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{% static 'core/js/startmin.js' %}"></script>
+        <script>
+            $(document).ready(function() {
+                $('#tabla-resultados').DataTable({
+                        responsive: true,
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                        }
+                });
+            });
+        </script>
+    </body>
+</html>

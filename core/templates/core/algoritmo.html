@@ -1,0 +1,150 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Clustering de Algoritmos no supervisados</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-edit fa-fw"></i> Formulario 
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <form role="form" action="/algoritmo/" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Algoritmo</label>
+                                <select class="form-control">
+                                    <option>EM</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Query</label>
+                                <input name="query" value="{% if datos_Form %}{{datos_Form.queryBD}}{% endif %}" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label>Número de Folds</label>
+                                <input type="number" value="{% if datos_Form %}{{datos_Form.numFolds}}{% else %}10{% endif %}" name="numFolds" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label>Número de K-means Runs</label>
+                                <input type="number" value="10" name="numKMeansRuns" class="form-control" >
+                            </div>
+                            <div class="form-group">
+                                <label>Máximo nro de clusters</label>
+                                <input type="number" value="-1" name="maximumNumberOfClusters" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Nro de clusters</label>
+                                <input type="number" value="-1" name="numClusters" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Nro máximo de iteraciones</label>
+                                <input type="number" value="100" name="maxIterations" class="form-control">
+                            </div>
+                            
+                
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="reset" class="btn btn-default">Limpiar</button>
+                        </form>
+                        
+                        
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+               
+   
+            </div>
+            <!-- /.col-lg-4 -->
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Resultados
+                        <div class="pull-right">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle"
+                                        data-toggle="dropdown">
+                                    Actions
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu pull-right" role="menu">
+                                    <li><a href="#">Action</a>
+                                    </li>
+                                    <li><a href="#">Another action</a>
+                                    </li>
+                                    <li><a href="#">Something else here</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                  
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+                                    <table id="tabla-resultados" class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Instancia</th>
+                                                <th>Time</th>
+                                                <th>Cluster</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for dato in datos %}
+                                                <tr>
+                                                    <td>{{forloop.counter}}</td>
+                                                    <td>{{dato.vals.0}}</td>
+                                                    <td>{{dato.vals.1}}</td>
+                                                    <td>{{dato.vals.2}}</td>
+                                                </tr>
+                                            {% endfor %}
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.col-lg-4 (nested) -->
+                           
+                            <!-- /.col-lg-8 (nested) -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">  
+            <img src="data:image/png;base64, {{imagen}}" alt="Imagen de algoritmo" />       
+        </div>
+        
+    </div>
+    <!-- /.container-fluid -->
+</div>
+{% endblock %}
