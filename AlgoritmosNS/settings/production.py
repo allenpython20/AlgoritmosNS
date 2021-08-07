@@ -16,4 +16,4 @@ DATABASES = {
     }
 }
 
-STATICFILES_DIRS = (BASE_DIR,'')
+STATICFILES_DIRS = (BASE_DIR,'core/static')
