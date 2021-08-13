@@ -20,7 +20,7 @@
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
-                        <form role="form" action="/algoritmo/" method="post">
+                        <form role="form" action="{% url 'algoritmo' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label>Algoritmo</label>
