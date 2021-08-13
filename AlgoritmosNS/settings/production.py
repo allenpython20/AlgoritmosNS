@@ -16,4 +16,3 @@ DATABASES = {
     }
 }
 
-# STATICFILES_DIRS = (BASE_DIR,'core/static/core')
