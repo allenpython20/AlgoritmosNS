@@ -15,5 +15,5 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-STATICFILES_DIRS = (BASE_DIR,'core/static/core')
+STATICFILES_DIRS = (BASE_DIR,'/core/static/core')
 # STATICFILES_DIRS = (BASE_DIR,'core/static/core')
