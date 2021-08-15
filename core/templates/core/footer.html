@@ -20,6 +20,9 @@
         <!-- Custom Theme JavaScript -->
         <script src="{% static 'core/js/startmin.js' %}"></script>
         <script>
+            // $(window).load(function() {
+            //     $("#contenedor_carga").fadeOut("slow");
+            // });
             $(document).ready(function() {
                 $('#tabla-resultados').DataTable({
                         responsive: true,
@@ -27,7 +30,16 @@
                             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
                         }
                 });
+                // var contenedor = document.getElementById('contenedor_carga');
+                // contenedor.style.visibility = 'hidden';
+                // contenedor.style.opacity = '0'; 
             });
+
+            // window.onload = function(){
+            //     var contenedor = document.getElementById('contenedor_carga');
+            //     contenedor.style.visibility = 'hidden';
+            //     contenedor.style.opacity = '0'; 
+            // }
         </script>
     </body>
 </html>

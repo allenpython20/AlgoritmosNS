@@ -13,7 +13,7 @@
         <!-- /.row -->
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-edit fa-fw"></i> Formulario 
@@ -22,41 +22,68 @@
                     <div class="panel-body">
                         <form role="form" action="{% url 'algoritmo' %}" method="post">
                             {% csrf_token %}
-                            <div class="form-group">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label>Query</label>
+                                    <textarea  name="query" rows="9" class="form-control" >{% if datos_Form %}{{datos_Form.queryBD}}{% endif %}</textarea>
+                                </div>
+
+                                <div class="form-group col-md-8">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Algoritmo</label>
+                                            <select class="form-control">
+                                                <option>EM</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Número de Folds</label>
+                                            <input type="number" value="{% if datos_Form %}{{datos_Form.numFolds}}{% else %}10{% endif %}" name="numFolds" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Número de K-means Runs</label>
+                                            <input type="number" value="10" name="numKMeansRuns" class="form-control" >
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Máximo nro de clusters</label>
+                                            <input type="number" value="-1" name="maximumNumberOfClusters" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Nro de clusters</label>
+                                            <input type="number" value="10" name="numClusters" class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Nro máximo de iteraciones</label>
+                                            <input type="number" value="100" name="maxIterations" class="form-control">
+                                        </div>
+                              
+                                        
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <!-- <button type="reset" class="btn btn-default">Limpiar</button> -->
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+
+                                
+                            </div>
+                           <!--  <div class="form-group">
                                 <label>Algoritmo</label>
                                 <select class="form-control">
                                     <option>EM</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Query</label>
-                                <textarea  name="query" rows="4" class="form-control" >{% if datos_Form %}{{datos_Form.queryBD}}{% endif %}</textarea>
-                                
-                            </div>
-                            <div class="form-group">
-                                <label>Número de Folds</label>
-                                <input type="number" value="{% if datos_Form %}{{datos_Form.numFolds}}{% else %}10{% endif %}" name="numFolds" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <label>Número de K-means Runs</label>
-                                <input type="number" value="10" name="numKMeansRuns" class="form-control" >
-                            </div>
-                            <div class="form-group">
-                                <label>Máximo nro de clusters</label>
-                                <input type="number" value="-1" name="maximumNumberOfClusters" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Nro de clusters</label>
-                                <input type="number" value="-1" name="numClusters" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Nro máximo de iteraciones</label>
-                                <input type="number" value="100" name="maxIterations" class="form-control">
-                            </div>
-                            
-                
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                            <button type="reset" class="btn btn-default">Limpiar</button>
+                            </div> -->
+                                       
+                           <!--  <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="reset" class="btn btn-default">Limpiar</button> -->
                         </form>
                         
                         
@@ -64,12 +91,77 @@
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
-               
-   
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-image fa-fw"></i> Gráfica
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        {% if datos.3 %}
+                            <img  class="img-thumbnail img-fluid" src="data:image/png;base64, {{datos.3}}" alt="Imagen de algoritmo" />  
+                        {% endif %}
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
             </div>
-            <!-- /.col-lg-4 -->
-
-            <div class="col-lg-8">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Información de clusters
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Cluster</th>
+                                        <th>Nº de instancias</th>
+                                        <th>Porcentaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for dato in datos.2 %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{dato.id}}</td>
+                                            <td>{{dato.numInstances}}</td>
+                                            <td>{{dato.percentage}}%</td>
+                                        </tr>
+                                    {% endfor %}  
+                                    <tr>
+                                        <td><b>Total: </b></td>
+                                        <td></td> 
+                                        <td>{{ datos.1|length  }}</td>
+                                        <td>{%if datos.2 %}100%{% endif %}</td>
+                                    </tr> 
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-6 -->
+        </div>
+        <!-- /.row --> 
+        <div class="row">
+            <div class="col-lg-12">
+                {% if datos == None %}
+                    <div  class="alert w-25 alert-dismissible" style="color: #a94442;background-color: #f2dede;border-color: #ebccd1">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>¡Error!</strong> La acción no se pudo completar.
+                    </div>
+                {% endif %}
+                 
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-bar-chart-o fa-fw"></i> Resultados
@@ -85,76 +177,40 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Cluster</th>
-                                                <th>Categoría</th>
-                                                <th>Título</th>
+                                                {% for dato in datos.0 %}
+                                                    <th>{{dato|title}}</th>  
+                                                {% endfor %}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {% for dato in datos.0 %}
-                                                <tr>
+                                            {% for dato in datos.1 %}
+                                                <tr >
                                                     <td>{{forloop.counter}}</td>
-                                                    <td>{{dato.instancia.2}}</td>
                                                     <td>{{dato.instancia.0}}</td>
-                                                    <td>{{dato.instancia.1}}</td>
-                                                    
+                                                    {% for columna in datos.0 %}
+                                                        {% load index %}
+                                                        {%if dato.instancia|index:forloop.counter == None %}
+                                                            <td class="text-center">-</td>  
+                                                        {% else %}
+                                                            <td>{{dato.instancia|index:forloop.counter}}</td>
+                                                        {% endif %}                                          
+                                                    {% endfor %}
                                                 </tr>
-                                            {% endfor %}
-                                            
+                                            {% endfor %} 
                                         </tbody>
-                                    </table>
-                                    <hr>
-                                    <div class="table-responsive">
-                                        <h3>Información de clusters</h3>
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                               
-                                                <tr>
-                                                    <th>Cluster</th>
-                                                    <th>Nº de instancias</th>
-                                                    <th>Porcentaje</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for dato in datos.1 %}
-                                                    <tr>
-                                                        <td>{{dato.id}}</td>
-                                                        <td>{{dato.numInstances}}</td>
-                                                        <td>{{dato.percentage}}%</td>
-                                                        
-                                                    </tr>
-                                                {% endfor %}  
-                                                    <tr>
-                                                        <td><b>Total: </b></td>
-                                                        <td>{{ datos.0|length  }}</td> 
-                                                        <td></td>
-                                                        
-                                                    </tr> 
-                                                    
-                                                                                                                       
-                                            </tbody>
-                                        </table>                                
-                                    </div>
-                                <!-- /.table-responsive -->
+                                    </table><!-- /.table-responsive -->
+                                </div>
                             </div>
-                            <!-- /.col-lg-4 (nested) -->
-                           
-                            <!-- /.col-lg-8 (nested) -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.panel-body -->
+                       
+                        </div> <!-- /.row -->
+                    </div><!-- /.panel-body -->
+               
                 </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-8 -->
-        </div>
-        <!-- /.row -->
-
-        <!-- <div class="row">  
-            <img src="data:image/png;base64, {{imagen}}" alt="Imagen de algoritmo" />       
-        </div> -->
+            </div><!-- /.col-lg-8 -->
+        </div><!-- /.row -->  
         
-    </div>
-    <!-- /.container-fluid -->
+    </div><!-- /.container-fluid -->
 </div>
+
 {% endblock %}
+
