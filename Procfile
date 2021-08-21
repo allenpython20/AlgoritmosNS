@@ -1,1 +1,1 @@
-web: gunicorn AlgoritmosNS.wsgi
+web: gunicorn AlgoritmosNS.wsgi --log-file -

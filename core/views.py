@@ -35,6 +35,5 @@ def generate_request(url, params={}):
 	if response.status_code == 200:
 		dataJson = response.json()
 
-
 	return dataJson
 
