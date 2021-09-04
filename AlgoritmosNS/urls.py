@@ -22,5 +22,6 @@ from core import views
 urlpatterns = [
     path('',views.algoritmo,name="home"),
     path('algoritmo/',views.algoritmo,name="algoritmo"),
+    path('carga_info/<int:cluster>',views.carga_info,name="carga_info"),
     path('admin/', admin.site.urls),
 ]

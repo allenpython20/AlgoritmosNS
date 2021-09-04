@@ -81,6 +81,7 @@ body {
     min-width: 0;
 }
 
+
 .navbar-top-links .dropdown-messages {
     margin-left: 5px;
 }
@@ -650,6 +651,10 @@ table.dataTable thead .sorting:after {
     background-color: #a94442; /* active bg color */
 }
 
+
+.numero-cluster{
+    cursor: pointer;
+}
 
 /*carga de pagina */
 #contenedor_carga{

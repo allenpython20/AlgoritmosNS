@@ -1,0 +1,57 @@
+
+<table id="tabla-resultados" class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Cluster</th>
+            {% for dato in datos.0 %}
+                <th>{{dato|title}}</th>  
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for dato in datos.1 %}
+            <tr >
+                <td>{{forloop.counter}}</td>
+                <td>{{dato.instancia.0}}</td>
+                {% for columna in datos.0 %}
+                    {% load index %}
+                    {%if dato.instancia|index:forloop.counter == None %}
+                        <td class="text-center">-</td>  
+                    {% else %}
+                        <td>{{dato.instancia|index:forloop.counter}}</td>
+                    {% endif %}                                          
+                {% endfor %}
+            </tr>
+        {% endfor %} 
+    </tbody>
+    <tfoot>
+        <td></td>
+        <td><input type="text" placeholder="Buscar por Cluster"></td>
+        {% for dato in datos.0 %}
+            <td><input type="text" placeholder="Buscar por {{dato|title}}"></td>  
+        {% endfor %}
+
+    </tfoot>
+</table><!-- /.table-responsive -->
+
+<script type="text/javascript">
+	 $('#tabla-resultados').DataTable({
+            responsive: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+            },
+            initComplete: function () {
+                this.api().columns().every(function () {
+                var column = this;
+                $('input', this.footer()).on('keyup change', function () {
+                if (column.search() !== this.value) {
+                    column
+                    .search(this.value)
+                    .draw();
+            }
+            });
+    	});
+        }
+    });
+</script>

@@ -19,6 +19,7 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="{% static 'core/js/startmin.js' %}"></script>
+        <script src="{% static 'core/js/main.js' %}"></script>
         <script>
             // $(window).load(function() {
             //     $("#contenedor_carga").fadeOut("slow");
@@ -28,7 +29,19 @@
                         responsive: true,
                         "language": {
                             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                        },
+                        initComplete: function () {
+                            this.api().columns().every(function () {
+                            var column = this;
+                            $('input', this.footer()).on('keyup change', function () {
+                            if (column.search() !== this.value) {
+                                column
+                                .search(this.value)
+                                .draw();
                         }
+                        });
+                });
+                    }
                 });
                 // var contenedor = document.getElementById('contenedor_carga');
                 // contenedor.style.visibility = 'hidden';
