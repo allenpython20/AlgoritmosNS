@@ -17,9 +17,12 @@
        <!--  <script src="{% static 'core/js/morris.min.js' %}"></script>
         <script src="{% static 'core/js/morris-data.js' %}"></script> -->
 
+      
+
         <!-- Custom Theme JavaScript -->
         <script src="{% static 'core/js/startmin.js' %}"></script>
         <script src="{% static 'core/js/main.js' %}"></script>
+
         <script>
             // $(window).load(function() {
             //     $("#contenedor_carga").fadeOut("slow");
@@ -43,6 +46,123 @@
                 });
                     }
                 });
+
+
+                Highcharts.chart('container-figure', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Resumen del atributo categoría'
+                    },
+                    tooltip: {
+                        
+                    },
+                    accessibility: {
+                        point: {
+                            valueSuffix: '%'
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Brands',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'DEVELOPER',
+                            y: 1840,
+                            sliced: true,
+                            selected: true
+                        }, {
+                            name: 'MANAGER',
+                            y: 375
+                        }, {
+                            name: 'SYSTEM ANALYSIS',
+                            y: 242
+                        }, {
+                            name: 'DIGITAL BUSINESS PROCESS',
+                            y: 220
+                        }, {
+                            name: 'SERVICE DESK',
+                            y: 198
+                        }, {
+                            name: 'DATABASE',
+                            y: 168
+                        }, {
+                            name: 'ARCHITECT',
+                            y: 159
+                        }, {
+                            name: 'CYBERSECURITY',
+                            y: 159
+                        }, {
+                            name: 'QUALITY SOFTWARE',
+                            y: 121
+                        },{
+                            name: 'SERVERS-CONTAINERS-VIRTUALIZATION',
+                            y: 119
+                        },{
+                            name: 'COMPUTER SCIENCE, SYSTEMS AND SOFTWARE',
+                            y: 118
+                        },{
+                            name: 'CLOUD COMPUTING',
+                            y: 70
+                        },{
+                            name: 'BUSINESS INTELLIGENCE',
+                            y: 65
+                        },{
+                            name: 'IT SERVICES',
+                            y: 41
+                        },{
+                            name: 'TRAINING AND RESEARCH',
+                            y: 32
+                        },{
+                            name: 'INFORMATION AND KNOWLEDGE MANAGEMENT',
+                            y: 29
+                        },{
+                            name: 'COMMUNICATION & NETWORKING',
+                            y: 25
+                        },{
+                            name: 'SOFTWARE DESIGN',
+                            y: 19
+                        }
+                        ]
+                    }]
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 // var contenedor = document.getElementById('contenedor_carga');
                 // contenedor.style.visibility = 'hidden';
                 // contenedor.style.opacity = '0'; 

@@ -8,6 +8,7 @@ def carga_info(request,cluster):
 	datos = request.session['datos_api']
 	clusters = datos[1]
 	clusters = list( filter( lambda ins: int(ins['instancia'][0]) == cluster , clusters) )
+	print(clusters , "\n")
 	datos = [datos[0],clusters]
 	return render(request,"core/info-cluster.html",{'datos':datos,'cluster':cluster,'clusters':clusters})
 
@@ -47,6 +48,14 @@ def algoritmo(request):
 			(response['AttSummaryPanel']).sort( key=lambda ins: int(ins[2]) ,reverse=True )
 			request.session['datos_api'] =  [ response['attributes'] ,response['valsInstances'] ]
 			datos = [response['attributes'],response['valsInstances'],response['infoCluster'],response['graph'],response['AttSummaryPanel']]
+
+			# datos_figura = list()
+
+			# for i in response['AttSummaryPanel']:
+			# 	print(i)
+
+
+			# print(response['AttSummaryPanel'])
 		else:
 			datos = None
 
